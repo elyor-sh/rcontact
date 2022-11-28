@@ -1,5 +1,16 @@
 .text {
   font-size: 13px;
-  color: #ff6666;
   padding: 4px 0;
+
+  .standard {
+    color: #333333;
+  }
+
+  &.error {
+    color: #ff6666;
+  }
+
+  &.light {
+    color: #737373;
+  }
 }

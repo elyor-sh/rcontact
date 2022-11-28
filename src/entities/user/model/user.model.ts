@@ -31,4 +31,4 @@ export const userModel = createSlice({
     }
 })
 
-export const {setUser} = userModel.actions
+export const {setUser, removeUser} = userModel.actions

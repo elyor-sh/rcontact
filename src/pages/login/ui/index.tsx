@@ -23,10 +23,10 @@ const LoginPage = () => {
             dispatch(setUser({
                 id: userCredential.user.uid,
                 email: userCredential.user.email,
-                token: userCredential.user?.access_token || ''
+                token: userCredential.user?.accessToken || ''
             }))
 
-            navigate('/')
+             navigate('/')
 
         }catch (e) {
             toast.error(`Ошибка при авторизации`, {toastId: 'log-toast-id-error'})
