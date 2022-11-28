@@ -2,7 +2,14 @@ import React, {useEffect, useMemo} from 'react';
 import {Container} from "@mui/material";
 import cl from './style.module.scss'
 import {useAppDispatch, useAppSelector} from "../../../lib";
-import {fetchContacts, divByAlphabetContacts, DividedContactsType, sortByAlphabet, ContactRow} from "../../../entities/contacts";
+import {
+    fetchContacts,
+    divByAlphabetContacts,
+    DividedContactsType,
+    sortByAlphabet,
+    ContactRow,
+    ContactFilters
+} from "../../../entities/contacts";
 import {LoadingSpinner, Text} from "../../../shared/ui";
 
 const ContactsPage = () => {
@@ -26,6 +33,7 @@ const ContactsPage = () => {
     return (
         <>
             <Container>
+                    <ContactFilters />
                 {
                     Object.keys(dividedByAlphabetContacts).map((key: keyof DividedContactsType) => {
                         return (

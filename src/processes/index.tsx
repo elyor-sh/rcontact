@@ -1,6 +1,6 @@
 import React from 'react';
 import {Routes, Route, Outlet} from 'react-router-dom'
-import {LoginPage, RegisterPage, ContactsPage} from "../pages";
+import {LoginPage, RegisterPage, ContactsPage, ContactsDetailPage} from "../pages";
 import {PrivatePages} from "./private-pages";
 import {Layout, Toaster} from "../shared/ui";
 import {Header} from "../widgets/header";
@@ -25,6 +25,7 @@ const Routing = () => {
                         }
                     >
                         <Route path='' element={<ContactsPage/>}/>
+                        <Route path='contacts/:id' element={<ContactsDetailPage/>}/>
                     </Route>
                 </Route>
             </Routes>
