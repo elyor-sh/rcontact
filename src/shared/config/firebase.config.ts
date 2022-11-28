@@ -19,7 +19,7 @@ export const firebaseApp = initializeApp(firebaseConfig);
 export const fireStorage = getStorage(firebaseApp)
 export const fireDB = getFirestore(firebaseApp)
 
-export type FireDbPaths = 'todo'
+export type FireDbPaths = 'contact'
 
 export type FireDateType = {
     nanoseconds: number

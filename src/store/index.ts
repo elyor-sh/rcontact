@@ -1,8 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import {userModel} from "../entities/user";
 
 
 const rootReducer = combineReducers({
-
+    user: userModel.reducer
 })
 
 const setupStore = () => {
