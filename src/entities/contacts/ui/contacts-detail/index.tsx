@@ -86,6 +86,7 @@ const ContactsDetail = ({id, isCreate, data}: ContactsDetailProps) => {
                     label='ФИО'
                     {...register('fullName', {required: true, minLength: 6})}
                 />
+                {errors.fullName ? <Text variant='error'>Невалидное ФИО</Text> : null}
             </Grid>
             <Grid item xs={12} sm={6} sx={{mb: 2}}>
                 <TextField
@@ -96,6 +97,7 @@ const ContactsDetail = ({id, isCreate, data}: ContactsDetailProps) => {
                     label='Email'
                     {...register('email', {required: true, pattern: emailRegex})}
                 />
+                {errors.email ? <Text variant='error'>Невалидный email</Text> : null}
             </Grid>
             <Grid item xs={12} sm={6} sx={{mb: 2}}>
                 <TextField
@@ -104,8 +106,9 @@ const ContactsDetail = ({id, isCreate, data}: ContactsDetailProps) => {
                     required
                     defaultValue={data?.phone || ''}
                     label='Номер телефона'
-                    {...register('phone', {required: true, minLength: 6})}
+                    {...register('phone', {required: true, minLength: 6, pattern: new RegExp(`^[0-9-+\s]+$`)})}
                 />
+                {errors.phone ? <Text variant='error'>Невалидный номер телефона</Text> : null}
             </Grid>
             <Grid item xs={12} sm={6} sx={{mb: 2}} container alignItems='center'>
                 <Grid item xs={11}>
