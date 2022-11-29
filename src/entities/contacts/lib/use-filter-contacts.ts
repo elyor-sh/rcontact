@@ -1,9 +1,9 @@
 import {useEffect} from "react";
-import {ContactsFilterType} from "../api";
+import {ContactsFilterType, ContactsType} from "../api";
 import {useAppDispatch, useAppSelector} from "../../../lib";
 import {setContacts} from "../model";
 
-export function useFilterContacts (filters: ContactsFilterType) {
+export function useFilterContacts (filters: ContactsFilterType, start: boolean) {
 
     const dispatch = useAppDispatch()
 
@@ -12,7 +12,7 @@ export function useFilterContacts (filters: ContactsFilterType) {
     useEffect(() => {
 
         const handleFiltered = () => {
-            const filtered = cachedContacts.filter(contact => {
+            const filtered = cachedContacts.filter((contact: ContactsType) => {
                 if(
                     contact.fullName.toLowerCase().includes(filters.fullName.toLowerCase())
                     &&
@@ -20,7 +20,7 @@ export function useFilterContacts (filters: ContactsFilterType) {
                     &&
                     contact.phone.toLowerCase().includes(filters.phone.toLowerCase())
                     &&
-                    contact.tags.find(tag => tag.toLowerCase().includes(filters.tags.toLowerCase()))
+                    contact.tags.find((tag: string) => tag.toLowerCase().includes(filters.tags.toLowerCase()))
                 ) {
                     return contact
                 }
@@ -30,12 +30,14 @@ export function useFilterContacts (filters: ContactsFilterType) {
         }
 
         const handler = setTimeout(() => {
-            handleFiltered()
+            if(start){
+                handleFiltered()
+            }
         }, 200)
 
         return () => {
             clearTimeout(handler)
         }
-    }, [filters])
+    }, [filters, start])
 
 }

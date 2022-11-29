@@ -1,4 +1,4 @@
-import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc, DocumentReference, DocumentData } from 'firebase/firestore'
+import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc, getDoc, DocumentReference, DocumentData } from 'firebase/firestore'
 import { fireDB, FireDbPaths } from "../config";
 
 
@@ -13,7 +13,7 @@ class HttpService {
         this.collection = collection(fireDB, path)
     }
 
-    public async getAll<T extends { id: string }>(): Promise<T[] | undefined> {
+    public async getAll<T extends { id: string }>(): Promise<T[]> {
 
         try {
 
@@ -61,6 +61,23 @@ class HttpService {
 
         } catch (e) {
             return Promise.reject(e)
+        }
+    }
+
+    public async getOne<T>(id: string): Promise<T | undefined> {
+        try {
+
+            const docRef = doc(fireDB, this.path, id);
+            const docSnap = await getDoc(docRef);
+
+            if(docSnap.exists()){
+                return Promise.resolve(docSnap.data() as T)
+            }
+
+            return Promise.reject({message: 'Не найден'})
+
+        }catch (e) {
+            return Promise.reject({message: 'Не найден'})
         }
     }
 

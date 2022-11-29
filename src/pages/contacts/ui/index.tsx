@@ -1,5 +1,6 @@
 import React, {useEffect, useMemo} from 'react';
-import {Container} from "@mui/material";
+import {useNavigate} from "react-router-dom";
+import {Button, Container, Grid} from "@mui/material";
 import cl from './style.module.scss'
 import {useAppDispatch, useAppSelector} from "../../../lib";
 import {
@@ -14,12 +15,14 @@ import {LoadingSpinner, Text} from "../../../shared/ui";
 
 const ContactsPage = () => {
 
+    const navigate = useNavigate()
+
     const dispatch = useAppDispatch()
 
     const {loading, contacts} = useAppSelector(state => state.contacts)
 
     const dividedByAlphabetContacts = useMemo(() => {
-        return divByAlphabetContacts(contacts)
+        return divByAlphabetContacts(sortByAlphabet(contacts))
     }, [contacts])
 
     useEffect(() => {
@@ -33,6 +36,11 @@ const ContactsPage = () => {
     return (
         <>
             <Container>
+                    <Grid container justifyContent='flex-end' sx={{mb: 2}}>
+                        <Button onClick={() => navigate('/contacts/create')}>
+                            Создать контакт
+                        </Button>
+                    </Grid>
                     <ContactFilters />
                 {
                     Object.keys(dividedByAlphabetContacts).map((key: keyof DividedContactsType) => {

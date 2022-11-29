@@ -1,0 +1,16 @@
+.tag {
+  background: #e8e8e8;
+  border-radius: 10px;
+  font-size: 13px;
+  padding: 3px 13px;
+  margin-left: 5px;
+  position: relative;
+
+  &__clear {
+    position: absolute;
+    right: 0;
+    top: -5px;
+    font-size: 11px;
+    cursor: pointer;
+  }
+}

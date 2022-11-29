@@ -1,5 +1,7 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 import {AppBar, Box, Toolbar, Typography} from "@mui/material";
+import cl from './style.module.scss'
 import {Logout} from "../../features/logout";
 
 const Header = () => {
@@ -8,7 +10,9 @@ const Header = () => {
             <AppBar position="fixed">
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Contacts app
+                        <Link to='/' className={cl.link}>
+                            Contacts app
+                        </Link>
                     </Typography>
                     <Logout />
                 </Toolbar>

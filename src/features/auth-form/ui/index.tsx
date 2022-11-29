@@ -1,15 +1,15 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-import {useForm} from "react-hook-form";
+import {useForm, FieldValues} from "react-hook-form";
 import {Button, Grid, TextField} from "@mui/material";
 import cl from './style.module.scss'
 import {emailRegex} from "../../../shared/const";
 import {Text} from "../../../shared/ui";
 
-export interface AuthFormDataType {
+export type AuthFormDataType = {
     email: string
     password: string
-}
+} & FieldValues
 
 interface AuthFormProps {
     buttonText: string
@@ -29,7 +29,7 @@ const AuthForm = ({navigateText, navigateTo, buttonText, onSubmit}: AuthFormProp
     return (
             <form
                 className={cl.form}
-                onSubmit={handleSubmit((data: AuthFormDataType) => onSubmit(data))}
+                onSubmit={handleSubmit((data) => onSubmit(data as AuthFormDataType))}
             >
                 <Grid container>
                     <Grid item xs={12} sx={{mb: 2, mt: 2}}>
@@ -39,7 +39,7 @@ const AuthForm = ({navigateText, navigateTo, buttonText, onSubmit}: AuthFormProp
                             label='Email'
                             {...register('email', {required: true, pattern: emailRegex})}
                         />
-                        {errors.email ? <Text>Невалидный email</Text> : null}
+                        {errors.email ? <Text variant='error'>Невалидный email</Text> : null}
                     </Grid>
                     <Grid item xs={12}>
                         <TextField
@@ -48,7 +48,7 @@ const AuthForm = ({navigateText, navigateTo, buttonText, onSubmit}: AuthFormProp
                             label='Пароль'
                             {...register('password', {required: true, minLength: 5})}
                         />
-                        {errors.password ? <Text>Длина пароля должна быть не менее 5 символов</Text> : null}
+                        {errors.password ? <Text variant='error'>Длина пароля должна быть не менее 5 символов</Text> : null}
                     </Grid>
 
 

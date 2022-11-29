@@ -7,6 +7,12 @@ import {AuthPages} from "../../../widgets/auth-pages";
 import {useAppDispatch} from "../../../lib";
 import {setUser} from "../../../entities/user";
 
+type IUser = {
+    accessToken?: string
+    email: string
+    uid: string
+}
+
 const LoginPage = () => {
 
     const navigate = useNavigate()
@@ -20,10 +26,12 @@ const LoginPage = () => {
 
             const userCredential = await signInWithEmailAndPassword(auth, data.email, data.password)
 
+            const user = userCredential.user as IUser
+
             dispatch(setUser({
-                id: userCredential.user.uid,
-                email: userCredential.user.email,
-                token: userCredential.user?.accessToken || ''
+                id: user.uid,
+                email: user.email || '',
+                token: user.accessToken || ''
             }))
 
              navigate('/')

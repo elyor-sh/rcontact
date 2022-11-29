@@ -24,6 +24,9 @@ const ContactRow = ({contact}: ContactRowProps) => {
                 <Typography sx={{pl: 1}}>
                     {contact.fullName}
                 </Typography>
+                <Typography sx={{pl: 1, fontSize: '12px'}}>
+                    <a href={`tel:${contact.phone}`} onClick={e => e.stopPropagation()}>({contact.phone})</a>
+                </Typography>
             </Grid>
         </>
     );

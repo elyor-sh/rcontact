@@ -1,11 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import {userModel} from "../entities/user";
-import {contactsModel} from "../entities/contacts";
+import {activeContactModel, contactsModel} from "../entities/contacts";
 
 
 const rootReducer = combineReducers({
     user: userModel.reducer,
-    contacts: contactsModel.reducer
+    contacts: contactsModel.reducer,
+    activeContact: activeContactModel.reducer
 })
 
 const setupStore = () => {

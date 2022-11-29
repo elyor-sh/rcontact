@@ -12,3 +12,11 @@ export type ContactsFilterType = {
     email: string
     tags: string
 }
+
+export type ContactsCreateType = {
+    email: string
+    fullName: string
+    owner: string
+    phone: string
+    tags: string[]
+}

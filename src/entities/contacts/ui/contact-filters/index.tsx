@@ -13,9 +13,11 @@ const initialFilters: ContactsFilterType = {
 
 const ContactFilters = () => {
 
+    const [start, setStart] = useState(false)
+
     const [filters, setFilters] = useState<ContactsFilterType>({...initialFilters})
 
-    useFilterContacts(filters)
+    useFilterContacts(filters, start)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const name = e.target.name as keyof ContactsFilterType
@@ -25,6 +27,8 @@ const ContactFilters = () => {
             ...filters,
             [name]: value
         }
+
+        setStart(true)
 
         setFilters(params)
     }
