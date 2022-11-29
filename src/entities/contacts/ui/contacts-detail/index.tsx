@@ -110,7 +110,7 @@ const ContactsDetail = ({id, isCreate, data}: ContactsDetailProps) => {
                 />
                 {errors.phone ? <Text variant='error'>Невалидный номер телефона</Text> : null}
             </Grid>
-            <Grid item xs={12} sm={6} sx={{mb: 2}} container alignItems='center'>
+            <Grid item xs={12} sm={6} sx={{mb: 2}} container>
                 <Grid item xs={11}>
                     <TextField
                         size='small'
@@ -122,6 +122,7 @@ const ContactsDetail = ({id, isCreate, data}: ContactsDetailProps) => {
                 </Grid>
                 <Grid item xs={1} container justifyContent='flex-end'>
                     <IconButton
+                        sx={{height: '40px'}}
                         disabled={!tags.input}
                         onClick={handleAddTag}
                     >
