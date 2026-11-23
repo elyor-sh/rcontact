@@ -24,3 +24,8 @@ dist-ssr
 *.sw?
 
 .env.local
+
+# env files
+.env
+.env.*
+!.env.example
